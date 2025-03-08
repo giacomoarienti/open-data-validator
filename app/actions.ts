@@ -39,7 +39,8 @@ export async function validateImage(imagePath: string, label: string) {
   const destDir = path.join(validatedDir, label);
   try {
     await fs.mkdir(destDir, { recursive: true });
-    await fs.rename(imagePath, path.join(destDir, filename));
+    await fs.copyFile(imagePath, path.join(destDir, filename));
+    await fs.unlink(imagePath);
   } catch (error) {
     console.error("Error moving file:", error);
     // If the file is not present, we'll just ignore it and let the client load a new image
