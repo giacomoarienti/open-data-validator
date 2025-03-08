@@ -34,18 +34,18 @@ export async function getRandomImage(): Promise<ImageData | null> {
   return null;
 }
 
-export async function validateImage(imagePath: string, label: string) {
-  const filename = path.basename(imagePath);
-  const destDir = path.join(validatedDir, label);
-  try {
-    await fs.mkdir(destDir, { recursive: true });
-    await fs.copyFile(imagePath, path.join(destDir, filename));
-    await fs.unlink(imagePath);
-  } catch (error) {
-    console.error("Error moving file:", error);
-    // If the file is not present, we'll just ignore it and let the client load a new image
+  export async function validateImage(imagePath: string, label: string) {
+    const filename = path.basename(imagePath);
+    const destDir = path.join(validatedDir, label);
+    try {
+      await fs.mkdir(destDir, { recursive: true });
+      await fs.copyFile(imagePath, path.join(destDir, filename));
+      await fs.unlink(imagePath);
+    } catch (error) {
+      console.error("Error moving file:", error);
+      // If the file is not present, we'll just ignore it and let the client load a new image
+    }
   }
-}
 
 export async function getLabels() {
   const files = await fs.readdir(datasetDir, { withFileTypes: true });
