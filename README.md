@@ -61,5 +61,8 @@ docker build . -t odv
 
 2. Run the Docker container:
 ```bash
-docker run -d -p 8001:3000 -v ./dataset/:/app/public/dataset --name odv odv
+docker run -d -p 8001:3000 \
+  -v ./dataset/:/app/public/dataset \
+  -v ./validated/:/app/validated/ \
+  --name odv odv
 ```
