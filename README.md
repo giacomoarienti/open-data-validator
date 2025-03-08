@@ -51,3 +51,15 @@ npm run build
 ```bash
 npm start
 ```
+
+## Docker
+
+1. Build the Docker image:
+```bash
+docker build . -t odv
+```
+
+2. Run the Docker container:
+```bash
+docker run -d -p 8001:3000 -v ./dataset/:/app/public/dataset --name odv odv
+```
